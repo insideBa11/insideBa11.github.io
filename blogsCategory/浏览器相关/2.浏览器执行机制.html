@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2.浏览器执行机制 | insideBa11个人空间</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/duoLa.png">
+    <meta name="description" content="藏了一点前端知识">
+    
+    <link rel="preload" href="/assets/css/0.styles.d8a523ce.css" as="style"><link rel="preload" href="/assets/js/app.151b4887.js" as="script"><link rel="preload" href="/assets/js/2.05ab9b9f.js" as="script"><link rel="preload" href="/assets/js/1.d29bbaca.js" as="script"><link rel="preload" href="/assets/js/63.e34e7616.js" as="script"><link rel="prefetch" href="/assets/js/10.62dc6cfc.js"><link rel="prefetch" href="/assets/js/11.6a71a21e.js"><link rel="prefetch" href="/assets/js/12.8dedd8bb.js"><link rel="prefetch" href="/assets/js/13.46e9a76c.js"><link rel="prefetch" href="/assets/js/14.8e7f9198.js"><link rel="prefetch" href="/assets/js/15.bf3f0711.js"><link rel="prefetch" href="/assets/js/16.a753830b.js"><link rel="prefetch" href="/assets/js/17.2e85910b.js"><link rel="prefetch" href="/assets/js/18.78f87d15.js"><link rel="prefetch" href="/assets/js/19.f254c540.js"><link rel="prefetch" href="/assets/js/20.c7080d24.js"><link rel="prefetch" href="/assets/js/21.7b207a7c.js"><link rel="prefetch" href="/assets/js/22.4240e383.js"><link rel="prefetch" href="/assets/js/23.c3e8619e.js"><link rel="prefetch" href="/assets/js/24.19db3f7e.js"><link rel="prefetch" href="/assets/js/25.9c8b9d07.js"><link rel="prefetch" href="/assets/js/26.a71e399f.js"><link rel="prefetch" href="/assets/js/27.f535c729.js"><link rel="prefetch" href="/assets/js/28.8bbf1a74.js"><link rel="prefetch" href="/assets/js/29.ebec5f7e.js"><link rel="prefetch" href="/assets/js/3.ab51ff0d.js"><link rel="prefetch" href="/assets/js/30.5439c7f4.js"><link rel="prefetch" href="/assets/js/31.8887faa7.js"><link rel="prefetch" href="/assets/js/32.d8abd21a.js"><link rel="prefetch" href="/assets/js/33.03f7e948.js"><link rel="prefetch" href="/assets/js/34.4d6d1417.js"><link rel="prefetch" href="/assets/js/35.de159cab.js"><link rel="prefetch" href="/assets/js/36.0a4bd9ad.js"><link rel="prefetch" href="/assets/js/37.741a8cf8.js"><link rel="prefetch" href="/assets/js/38.6add0994.js"><link rel="prefetch" href="/assets/js/39.644b5ee0.js"><link rel="prefetch" href="/assets/js/4.7af1cfc6.js"><link rel="prefetch" href="/assets/js/40.a1b09726.js"><link rel="prefetch" href="/assets/js/41.335693cf.js"><link rel="prefetch" href="/assets/js/42.c9d39e09.js"><link rel="prefetch" href="/assets/js/43.bf6d4b53.js"><link rel="prefetch" href="/assets/js/44.f24fd76b.js"><link rel="prefetch" href="/assets/js/45.5c7a4ca1.js"><link rel="prefetch" href="/assets/js/46.0f0a5446.js"><link rel="prefetch" href="/assets/js/47.648a6794.js"><link rel="prefetch" href="/assets/js/48.b775f4c0.js"><link rel="prefetch" href="/assets/js/49.33b8a94f.js"><link rel="prefetch" href="/assets/js/5.8ac2d0b5.js"><link rel="prefetch" href="/assets/js/50.c25d3627.js"><link rel="prefetch" href="/assets/js/51.4530477b.js"><link rel="prefetch" href="/assets/js/52.e2245256.js"><link rel="prefetch" href="/assets/js/53.fba49c45.js"><link rel="prefetch" href="/assets/js/54.77e77f5c.js"><link rel="prefetch" href="/assets/js/55.25a48e3f.js"><link rel="prefetch" href="/assets/js/56.45c2c3ec.js"><link rel="prefetch" href="/assets/js/57.8aae2b2c.js"><link rel="prefetch" href="/assets/js/58.75ba732a.js"><link rel="prefetch" href="/assets/js/59.2caea18d.js"><link rel="prefetch" href="/assets/js/6.2bf7bc3e.js"><link rel="prefetch" href="/assets/js/60.45be546f.js"><link rel="prefetch" href="/assets/js/61.a90559c8.js"><link rel="prefetch" href="/assets/js/62.806f8c9b.js"><link rel="prefetch" href="/assets/js/64.d358a70d.js"><link rel="prefetch" href="/assets/js/65.137f0e71.js"><link rel="prefetch" href="/assets/js/66.15c0a26a.js"><link rel="prefetch" href="/assets/js/67.5ad614f2.js"><link rel="prefetch" href="/assets/js/68.f919d7c2.js"><link rel="prefetch" href="/assets/js/69.2793aa5d.js"><link rel="prefetch" href="/assets/js/7.0c193685.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.19933dad.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d8a523ce.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">insideBa11个人空间</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客分类" class="dropdown-title"><span class="title">博客分类</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客分类" class="mobile-dropdown-title"><span class="title">博客分类</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogsCategory/Vue/1.数据代理.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/Js/1.执行机制.html" class="nav-link">
+  JavaScript
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/Node/1.基础知识.html" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/HTML、CSS/1.垂直居中和水平居中方法总结.html" class="nav-link">
+  HTML、CSS
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/数据结构/1.morris.html" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/浏览器相关/1.浏览器存储.html" class="nav-link">
+  浏览器相关
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/网络/1.传输层.html" class="nav-link">
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/库/1.gsap.html" class="nav-link">
+  库
+</a></li></ul></div></div><div class="nav-item"><a href="mailto:1070681937@qq.com" class="nav-link external">
+  联系我
+  <!----></a></div><div class="nav-item"><a href="https://github.com/insideBa11" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客分类" class="dropdown-title"><span class="title">博客分类</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客分类" class="mobile-dropdown-title"><span class="title">博客分类</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogsCategory/Vue/1.数据代理.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/Js/1.执行机制.html" class="nav-link">
+  JavaScript
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/Node/1.基础知识.html" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/HTML、CSS/1.垂直居中和水平居中方法总结.html" class="nav-link">
+  HTML、CSS
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/数据结构/1.morris.html" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/浏览器相关/1.浏览器存储.html" class="nav-link">
+  浏览器相关
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/网络/1.传输层.html" class="nav-link">
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/blogsCategory/库/1.gsap.html" class="nav-link">
+  库
+</a></li></ul></div></div><div class="nav-item"><a href="mailto:1070681937@qq.com" class="nav-link external">
+  联系我
+  <!----></a></div><div class="nav-item"><a href="https://github.com/insideBa11" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>浏览器相关</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blogsCategory/浏览器相关/1.浏览器存储.html" class="sidebar-link">1.浏览器存储</a></li><li><a href="/blogsCategory/浏览器相关/2.浏览器执行机制.html" class="active sidebar-link">2.浏览器执行机制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blogsCategory/浏览器相关/2.浏览器执行机制.html#浏览器常驻的线程" class="sidebar-link">浏览器常驻的线程</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blogsCategory/浏览器相关/2.浏览器执行机制.html#js执行机制" class="sidebar-link">js执行机制：</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_2-浏览器执行机制"><a href="#_2-浏览器执行机制" class="header-anchor">#</a> 2.浏览器执行机制</h1> <h2 id="浏览器常驻的线程"><a href="#浏览器常驻的线程" class="header-anchor">#</a> 浏览器常驻的线程</h2> <p>js引擎线程（解释执行js代码、用户输入，网络请求）</p> <p>GUI线程（绘制用户页面、与js主线程是互斥的）</p> <p>http网络请求线程（处理用户的get、post等请求，等返回结果后将回调函数推入任务队列）</p> <p>定时触发器线程（setTimeout、setInterval等待时间结束后把执行函数推入任务队列中）</p> <p>浏览器事件处理线程（click、mouse等交互事件发生后将这些事件放入事件队列中）</p> <p><img src="https://img2018.cnblogs.com/blog/1309608/201902/1309608-20190222082053435-1516343396.png" alt=""> <img src="/UI主线.png" alt="get&amp;post"></p> <p>JS引擎线程和GUI引擎线程————互斥</p> <p>js可以操作DOM元素，进而会影响到GUI的渲染结果，因此js引擎线程与gui渲染线程是互斥的。也就是说当js引擎线程处于运行状态时，gui渲染线程将处于冻结状态。</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">&quot;button&quot;</span><span class="token operator">&gt;</span>test<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+
+        <span class="token keyword">var</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>button<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        button<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            button<span class="token punctuation">.</span>style<span class="token punctuation">.</span>fontSize <span class="token operator">=</span> <span class="token string">'100px'</span><span class="token punctuation">;</span>
+            button<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> index <span class="token operator">&lt;</span> <span class="token number">1000000</span><span class="token punctuation">;</span> index <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                button<span class="token punctuation">.</span>innerText <span class="token operator">=</span> index<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+         
+    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+在上述代码中，即使style的样式写在innerText之前，但因为style样式所在的域是click <span class="token keyword">function</span>，所以在整个onclick <span class="token keyword">function</span>函数执行完成之前，<span class="token constant">GUI</span>的线程都会处于冻结状态。因此button的样式（fontSize、color、innerText）会等到函数执行完之后，才一起、同时改变。
+</code></pre></div><ul><li>js为何是单线程？</li></ul> <p>假如js是多线程，同一个时间一个线程想要修改DOM，另一个线程想要删除DOM，问题就会复杂许多，浏览器不知道听谁的，如果引入“锁”的机制，就又回到其他语言的尴尬困境了。</p> <ul><li>大量数据操作怎么办？</li></ul> <p>单线程计算能力有限，大量数据需要计算渲染的话，我们可以配合后端进行操作，比如VUE和nodejs配合，也就是SSR技术。</p> <h3 id="js执行机制"><a href="#js执行机制" class="header-anchor">#</a> js执行机制：</h3> <p>JavaScript是基于单线程运行的，同时又是可以异步执行的，一般来说这种既是单线程又是异步的语言都是基于事件来驱动的，恰好浏览器就给JavaScript提供了这么一个环境。</p> <p><img src="https://img-blog.csdnimg.cn/20190422215423284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ0NjU5MzQ=,size_16,color_FFFFFF,t_70" alt=""></p> <img src="/js任务栈.jpeg" alt=""> <p>上图内容用文字表述的话：
+同步和异步任务分别进入不同的“场所”，同步的进入主线程，异步的进入Event Table并注册函数
+当指定的事情完成时，Event Table会将这个函数移入Event Queue
+主线程内的任务执行完毕为空，回去Event Queue读取对应的函数，进入主线程执行，上述过程会不断重复，也就是常说的Event Loop（事件循环）</p> <p><strong>同步任务</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+    <span class="token keyword">function</span> <span class="token function">outer</span><span class="token punctuation">(</span><span class="token parameter">ot</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token parameter">it</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">inner</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">outer</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+<span class="token comment">// 20</span>
+<span class="token comment">// 10</span>
+</code></pre></div><ol start="0"><li><p>代码没有执行的时候，执行栈为空栈</p></li> <li><p>outer 函数执行时，创建了一帧，帧中包含了形参、局部变量 (预编译过程) ，把帧压入栈中</p></li> <li><p>执行 outer 函数内代码，执行 inner 函数</p></li> <li><p>创建新帧，同样有形参、局部变量，压入栈中</p></li> <li><p>outer 函数执行完毕，弹出栈</p></li> <li><p>inner 函数执行完毕，弹出栈</p></li> <li><p>执行栈为空（<strong>执行栈相当于js主线程</strong>）</p></li></ol> <p><strong>异步任务</strong></p> <div class="language-js extra-class"><pre class="language-js"><code>$<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">url</span><span class="token operator">:</span><span class="token string">'xxx.xxx.com'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'run'</span><span class="token punctuation">)</span>
+</code></pre></div><p>0.Ajax进入Event Table，注册回调函数success</p> <p>1.执行console.log('run')</p> <p>2.Ajax事件完成，http网络请求线程把success任务放入Event Queue中</p> <p>3.主线程（调用栈）读取任务，执行success</p> <p><strong>任务队列</strong></p> <p>由于JS是一个单线程的语言，就需要一个专门来管理任务执行的队列，只有前一个任务执行完了，才会接着去执行下一个任务。但是有些任务耗费的时间很长，如果是cpu一直在忙碌在干事情，那倒也没什么，最怕的是此时cpu是处于空闲状态的。比如I/O操作，或者Ajax请求，有时候我们发出一个ajax到后端请求数据到浏览器接受到后端返回的数据，这段时间比较长。此时若是cpu一直处于空闲等待的状态的话，那岂不是会浪费很多性能。所以设计者就考虑不妨将这些需要等待的任务挂起，去执行后面的任务，等到所请求的数据返回或者I/O操作结束有了结果之后再回过头去执行刚刚被挂起的任务。</p> <p>因此根据上述我们又可以将任务分为两类，一种是同步任务，一种是异步任务。我们将同步任务放在浏览器的主线程之上，只有前面一个任务执行完成之后才会执行后面的任务，异步任务是指 不进入主线程，而进入任务队列的任务。只有主线程里的同步任务都执行之后（主线程里没其他任务了），才会执行任务队列里的异步任务。</p> <p>具体来说异步任务的执行机制如下：</p> <p>1：有一个主线程用于执行一些同步任务，形成一个执行栈。</p> <p>2：与此同时还有一个任务队列，当异步任务有了运行结果的时候，就会在任务队列中放置一个事件。</p> <p>3：一旦主线程上的同步任务都执行完了，系统就会依次读取任务队列上的任务。而此时正处于“等待”状态的异步任务也就结束等待了，开始进入执行栈中，开始执行。</p> <p>4：主线程不断反复的重复上面第三部。</p> <p>一旦主线程上面的任务运行完之后就会从任务队列中读取新的任务继续运行。这就是javascript的运行机制，整个过程不断循环反复直至所有任务全部运行结束。</p> <p>&quot;任务队列&quot;是一个事件的队列（也可以理解成消息的队列），IO设备完成一项任务，就在&quot;任务队列&quot;中添加一个事件，表示相关的异步任务可以进入&quot;执行栈&quot;了。主线程读取&quot;任务队列&quot;，就是读取里面有哪些事件。</p> <p>&quot;任务队列&quot;中的事件，除了IO设备的事件以外，还包括一些用户产生的事件（比如鼠标点击、页面滚动等等）。只要指定过回调函数，这些事件发生时就会进入&quot;任务队列&quot;，等待主线程读取。</p> <p><strong>微队列，microtask，也叫jobs</strong></p> <p>另一些异步任务的回调会依次进入micro task queue，等待后续被调用，这些异步任务包括：</p> <ol><li><p>process.nextTick (Node独有)</p></li> <li><p>Promise</p></li> <li><p>Object.observe</p></li> <li><p>MutationObserver（用来监视 DOM 变动。比如节点的增减、属性的变动、文本内容的变动。）
+<strong>（注：这里只针对浏览器和NodeJS）</strong></p></li></ol> <p><strong>宏队列，macrotask，也叫tasks</strong></p> <p>一些异步任务的回调会依次进入macro task queue，等待后续被调用，这些异步任务包括：</p> <ol start="5"><li><p>setTimeout 、setInterval</p></li> <li><p>setImmediate (Node独有)</p></li> <li><p>requestAnimationFrame  (浏览器独有)</p></li> <li><p>requestAnimationFrame在<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="noopener noreferrer">MDN的定义<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>为，下次页面重绘前所执行的操作，而重绘也是作为宏任务的一个步骤来存在的，且该步骤晚于微任务的执行。严格来说，这个api不属于宏任务也不属于微任务，他的触发时间位于宏任务和微任务之间。</p></li> <li><p>I/O</p></li> <li><p>UI rendering (浏览器独有)</p> <p>我们先来看一张图，再看完这篇文章后，请返回来再仔细看一下这张图，相信你会有更深的理解。
+<img src="/js队列.jpeg" alt=""></p> <p>这张图将浏览器的Event Loop完整的描述了出来，我来讲执行一个JavaScript代码的具体流程：</p> <div class="language- extra-class"><pre><code>1. 执行全局Script同步代码，这些同步代码有一些是同步语句，有一些是异步语句（比如setTimeout等）；
+2. 全局Script代码执行完毕后，调用栈Stack会清空； 
+3. 从微队列microtask queue中取出位于队首的回调任务，放入调用栈Stack中执行，执行完后microtask queue长度减1；
+4. 继续取出位于队首的任务，放入调用栈Stack中执行，以此类推，直到直到把microtask queue中的所有任务都执行完毕。
+5. 注意，如果在执行microtask的过程中，又产生了microtask，那么会加入到队列的末尾，也会在这个周期被调用执行；
+6. microtask queue中的所有任务都执行完毕，此时microtask queue为空队列，调用栈Stack也为空；
+7. 取出宏队列macrotask queue中位于队首的任务，放入Stack中执行； 执行完毕后，调用栈Stack为空；
+8. 重复第3-7个步骤； 
+9. 重复第3-7个步骤； ......
+   **可以看到，这就是浏览器的事件循环Event Loop**
+</code></pre></div><p><strong>这里归纳3个重点：</strong></p> <div class="language- extra-class"><pre><code>1. 宏队列macrotask一次只从队列中取一个任务执行，执行完后就去执行微任务队列中的任务；
+2. 微任务队列中所有的任务都会被依次取出来执行，直到microtask queue为空； 
+3. 图中没有画UI rendering的节点，因为这个是由浏览器自行判断决定的，但是只要执行UI rendering，它的节点是在执行完所有的microtask之后，下一个macrotask之前，紧跟着执行UI render。
+</code></pre></div></li></ol> <img src="/js总线程.jpeg" alt=""></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blogsCategory/浏览器相关/1.浏览器存储.html" class="prev">
+        1.浏览器存储
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.151b4887.js" defer></script><script src="/assets/js/2.05ab9b9f.js" defer></script><script src="/assets/js/1.d29bbaca.js" defer></script><script src="/assets/js/63.e34e7616.js" defer></script>
+  </body>
+</html>
